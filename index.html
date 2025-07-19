@@ -109,6 +109,39 @@
   }
 }
 
+
+.crypto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.crypto-item {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.crypto-item img {
+  width: 40px;
+  margin-bottom: 8px;
+}
+
+.crypto-item p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
 </style>
 </head>
 <body>
@@ -165,7 +198,39 @@
       <p><strong>Q:</strong> Where can I use the card?</p>
       <p><strong>A:</strong> Anywhere Visa or Mastercard is accepted online.</p>
     </section>
-  </main>
+  
+<section class="crypto-grid">
+  <div class="crypto-item">
+    <img src="btc-icon.png" alt="Bitcoin" />
+    <p>BTC</p>
+  </div>
+  <div class="crypto-item">
+    <img src="eth-icon.png" alt="Ethereum" />
+    <p>ETH</p>
+  </div>
+  <div class="crypto-item">
+    <img src="sol-icon.png" alt="Solana" />
+    <p>SOL</p>
+  </div>
+  <div class="crypto-item">
+    <img src="matic-icon.png" alt="Matic" />
+    <p>MATIC</p>
+  </div>
+  <div class="crypto-item">
+    <img src="usdc-icon.png" alt="USDC SOL" />
+    <p>USDC-SOL</p>
+  </div>
+  <div class="crypto-item">
+    <img src="usdt-icon.png" alt="USDT ERC20" />
+    <p>USDT-ERC20</p>
+  </div>
+  <div class="crypto-item">
+    <img src="usdt-sol-icon.png" alt="USDT SOL" />
+    <p>USDT-SOL</p>
+  </div>
+</section>
+
+</main>
 
   <script>
     function toggleMenu() {
