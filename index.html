@@ -80,7 +80,36 @@
         font-size: 16px;
       }
     }
-  </style>
+  
+/* 🔧 Ikon crypto yo pi piti sou tout aparèy */
+.steps img {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 6px;
+}
+
+/* 📱 Optimize layout sou telefòn */
+@media (max-width: 768px) {
+  .steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .steps div {
+    text-align: center;
+  }
+
+  .steps h3 {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}
+
+</style>
 </head>
 <body>
   <header class="hero" style="background: url('bg-laptop.png') no-repeat center center/cover;">
