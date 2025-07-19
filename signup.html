@@ -5,14 +5,28 @@
   <meta charset="UTF-8">
   <title>Signup - Cardexa</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .form-box { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+    .success-message { display: none; background: #d4edda; color: #155724; padding: 10px; margin-top: 15px; border: 1px solid #c3e6cb; border-radius: 5px; }
+  </style>
   <script>
     (function(){
       emailjs.init("LHlj0ektnsPREya5c");
     })();
 
-    function sendVerificationCode() {
+    function registerUser(event) {
+      event.preventDefault();
+
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (!name || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
       const code = Math.floor(100000 + Math.random() * 900000);
       localStorage.setItem("verification_code", code);
       localStorage.setItem("user_email", email);
@@ -25,18 +39,26 @@
 
       emailjs.send("service_4e5oo6m", "template_7uty9kk", templateParams)
         .then(function() {
-          alert("Verification code sent!");
-          window.location.href = "verify.html";
+          document.getElementById("success-message").style.display = "block";
+          setTimeout(() => { window.location.href = "verify.html"; }, 3000);
         }, function(error) {
-          alert("Failed to send code: " + JSON.stringify(error));
+          alert("Failed to send verification email: " + JSON.stringify(error));
         });
     }
   </script>
 </head>
 <body>
-  <h2>Signup</h2>
-  <input type="text" id="name" placeholder="Your Name"><br><br>
-  <input type="email" id="email" placeholder="Your Email"><br><br>
-  <button onclick="sendVerificationCode()">Send Verification Code</button>
+  <div class="form-box">
+    <h2>Create Your Account</h2>
+    <form onsubmit="registerUser(event)">
+      <input type="text" id="name" placeholder="Your Name" required><br><br>
+      <input type="email" id="email" placeholder="Your Email" required><br><br>
+      <input type="password" id="password" placeholder="Your Password" required><br><br>
+      <button type="submit">Create Account</button>
+    </form>
+    <div id="success-message" class="success-message">
+      You have successfully registered. A 6-digit verification code has been sent to your email.
+    </div>
+  </div>
 </body>
 </html>
