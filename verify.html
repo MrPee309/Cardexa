@@ -1,40 +1,25 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify Your Code</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 40px; text-align: center; }
-    input, button { padding: 10px; margin-top: 10px; font-size: 16px; }
-    .code-box { margin-top: 20px; }
-  </style>
+  <title>Verify - Cardexa</title>
 </head>
 <body>
-  <h2>Enter Verification Code</h2>
-  <p>Please enter the 6-digit code sent to your email to verify your account.</p>
-  <div class="code-box">
-    <input type="text" id="codeInput" placeholder="6-digit code" maxlength="6">
-    <br>
-    <button onclick="verifyCode()">Verify</button>
-    <p id="message"></p>
-  </div>
+  <h2>Enter the verification code sent to your email</h2>
+  <input type="text" id="verify-code" placeholder="6-digit code"><br><br>
+  <button onclick="verifyCode()">Verify</button>
 
   <script>
     function verifyCode() {
-      const enteredCode = document.getElementById("codeInput").value;
-      const savedCode = sessionStorage.getItem("verification_code");
+      const inputCode = document.getElementById("verify-code").value;
+      const storedCode = localStorage.getItem("verification_code");
 
-      if (!savedCode) {
-        document.getElementById("message").innerText = "No verification code found. Please restart the process.";
-        return;
-      }
-
-      if (enteredCode === savedCode) {
-        document.getElementById("message").innerText = "✅ Email verified successfully!";
-        // You can redirect or store status here
+      if (inputCode === storedCode) {
+        alert("Email verified successfully!");
+        // Redirect or proceed here
       } else {
-        document.getElementById("message").innerText = "❌ Invalid code. Please try again.";
+        alert("Invalid code. Please check and try again.");
       }
     }
   </script>
