@@ -54,6 +54,32 @@
     .steps, .faq { padding: 20px; }
     .steps div, .faq { margin-bottom: 20px; }
     .auth-buttons { margin-top: 20px; }
+
+    /* 🔧 Optimize crypto icon display */
+    .steps img {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+
+    /* 📱 Responsive fix pou mobil */
+    @media (max-width: 768px) {
+      .steps div {
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      .steps img {
+        width: 70px;
+        margin-bottom: 5px;
+      }
+
+      .steps h3 {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -85,6 +111,11 @@
     <section class="how-it-works">
       <h2>How it Works</h2>
       <div class="steps">
+        <div>
+          <img src="tether-icon.png" alt="Tether Icon" />
+          <h3>Pay with USDT</h3>
+        </div>
+
         <div>
           <img src="btc-icon.png" alt="Bitcoin Icon" />
           <h3>Pay with Bitcoin</h3>
