@@ -1,117 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cardexa</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; }
-    header.hero {
-      background: url('cardexa_logo.png') no-repeat center center/cover;
-      position: relative;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-    }
-    .menu-icon {
-      display: block;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      z-index: 10;
-    }
-    .menu-icon div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      margin: 5px 0;
-    }
-    nav {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.9);
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      padding: 60px 0 20px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 0;
-      display: block;
-    }
-    nav.show { display: flex; }
-    .steps, .faq { padding: 20px; }
-    .steps div, .faq { margin-bottom: 20px; }
-    .auth-buttons { margin-top: 20px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cardexa - Buy a card. Pay with crypto. Use it worldwide.</title>
+  <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-  <header class="hero" style="background: url('bg-laptop.png') no-repeat center center/cover;">
-    <div class="menu-icon" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <nav id="navMenu">
-      <a href="index.html">Home</a>
-      <a href="login.html">Login</a>
-      <a href="signup.html">Open New Account</a>
-    </nav>
-
+  <header class="hero">
     <div class="overlay">
-      <img src="cardexa_logo.png" alt="Cardexa Logo" width="100" />
+      <img src="A_logo_in_a_digital_medium_features_the_brand_name.png" alt="Cardexa Logo" class="logo" />
       <h1>Cardexa</h1>
       <p>Buy a card. Pay with crypto. Use it worldwide.</p>
-      <a href="buy.html" class="btn">Buy with Crypto</a>
-      <div class="auth-buttons">
-        <a href="login.html">Login</a> |
-        <a href="signup.html">Open New Account</a>
-      </div>
+      <a href="buy.html" class="btn-buy">Buy Now</a>
     </div>
   </header>
-
   <main>
-    <section class="how-it-works">
-      <h2>How it Works</h2>
-      <div class="steps">
-        <div>
-          <img src="btc-icon.png" alt="Bitcoin Icon" />
-          <h3>Pay with Bitcoin</h3>
-        </div>
-        <div>
-          <img src="eth-icon.png" alt="Ethereum Icon" />
-          <h3>Pay with Ethereum</h3>
-        </div>
-        <div>
-          <img src="usdc-icon.png" alt="USDC Icon" />
-          <h3>Pay with USDC</h3>
-        </div>
-      </div>
+    <section>
+      <h2>How It Works</h2>
+      <ol>
+        <li><strong>💳 Choose your card</strong></li>
+        <li><strong>💸 Pay with crypto</strong></li>
+        <li><strong>🚀 Receive it instantly</strong></li>
+      </ol>
     </section>
-
-    <section class="faq">
+    <section>
       <h2>FAQ</h2>
-      <p><strong>Q:</strong> Where can I use the card?</p>
-      <p><strong>A:</strong> Anywhere Visa or Mastercard is accepted online.</p>
+      <p><strong>Q:</strong> Where can I use the card?<br><strong>A:</strong> Anywhere Mastercard is accepted online.</p>
     </section>
+    <footer>
+      <p>Contact us at: support@cardexa.com</p>
+    </footer>
   </main>
-
-  <script>
-    function toggleMenu() {
-      var menu = document.getElementById("navMenu");
-      menu.classList.toggle("show");
-    }
-  </script>
 </body>
 </html>
