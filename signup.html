@@ -4,18 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Signup - Cardexa</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <!-- EmailJS SDK v3 (module) -->
+  <script type="module">
+    import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
+    window.emailjs = emailjs;
+    emailjs.init('LHlj0ektnsPREya5c');
+  </script>
+
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     .form-box { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
     .success-message { display: none; background: #d4edda; color: #155724; padding: 10px; margin-top: 15px; border: 1px solid #c3e6cb; border-radius: 5px; }
   </style>
-  <script>
-    (function(){
-      emailjs.init("LHlj0ektnsPREya5c");
-    })();
 
-    function registerUser(event) {
+  <script>
+    window.registerUser = function(event) {
       event.preventDefault();
 
       const name = document.getElementById("name").value;
@@ -37,7 +41,7 @@
         message: code
       };
 
-      emailjs.send("service_4e5oo6m", "template_7uty9kk", templateParams)
+      window.emailjs.send("service_4e5oo6m", "template_7uty9kk", templateParams)
         .then(function() {
           document.getElementById("success-message").style.display = "block";
           setTimeout(() => { window.location.href = "verify.html"; }, 3000);
