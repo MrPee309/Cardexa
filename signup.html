@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <title>Signup - Cardexa</title>
 
-  <!-- EmailJS SDK (module version) -->
-  <script type="module">
-    import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
-    window.emailjs = emailjs;
-    emailjs.init('LHlj0ektnsPREya5c');
+  <!-- Classic EmailJS SDK (non-module) -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("LHlj0ektnsPREya5c");
+    })();
   </script>
 
   <style>
@@ -41,7 +42,7 @@
   </style>
 
   <script>
-    window.registerUser = function(event) {
+    function registerUser(event) {
       event.preventDefault();
 
       const name = document.getElementById("name").value.trim();
@@ -59,7 +60,6 @@
         return;
       }
 
-      // Check if email is already registered (for demo, check localStorage list)
       const registered = JSON.parse(localStorage.getItem("registered_emails") || "[]");
       if (registered.includes(email)) {
         errorMsg.innerText = "This email is already registered. Please log in.";
@@ -75,9 +75,8 @@
         message: code
       };
 
-      window.emailjs.send("service_4e5oo6m", "template_7uty9kk", templateParams)
+      emailjs.send("service_4e5oo6m", "template_7uty9kk", templateParams)
         .then(function() {
-          // only save data if send was successful
           localStorage.setItem("verification_code", code);
           localStorage.setItem("user_email", email);
           registered.push(email);
