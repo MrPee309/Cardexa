@@ -1,0 +1,1 @@
+// email.js: Script to send verification email using EmailJS

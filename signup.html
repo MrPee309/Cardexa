@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open New Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b1a49;
+            color: white;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #122a5f;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button, a {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+        #message {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #28a745;
+            color: white;
+        }
+        .error {
+            background-color: #dc3545;
+            color: white;
+        }
+        .home-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .login-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Open New Account</h2>
+        <input type="email" placeholder="Email" id="email">
+        <input type="password" placeholder="Password" id="password">
+        <button onclick="register()">Register</button>
+        <div id="message"></div>
+        <a href="index.html" class="home-btn" id="homeButton" style="display:none;">🏠 Go to Home</a>
+        <a href="login.html" class="login-btn" id="loginButton" style="display:none;">🔐 Login Now</a>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6OGM7K4-QJ5pojo2CbKvPG8gw1FAw5eI",
+            authDomain: "cardexa-ced2b.firebaseapp.com",
+            projectId: "cardexa-ced2b",
+            storageBucket: "cardexa-ced2b.appspot.com",
+            messagingSenderId: "89756517705",
+            appId: "1:89756517705:web:bf07924b1aaf46a883c698",
+            measurementId: "G-P8XZGRGDVN"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        async function register() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+            const homeBtn = document.getElementById("homeButton");
+            const loginBtn = document.getElementById("loginButton");
+            message.innerHTML = '';
+            message.className = '';
+            homeBtn.style.display = "none";
+            loginBtn.style.display = "none";
+
+            try {
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                await userCredential.user.sendEmailVerification();
+                message.className = 'success';
+                message.innerText = '✅ Registration successful! Please check your email to verify your account.';
+                await firebase.auth().signOut();
+                homeBtn.style.display = "block";
+                loginBtn.style.display = "block";
+            } catch (error) {
+                message.className = 'error';
+                if (error.code === 'auth/email-already-in-use') {
+                    message.innerText = '⚠️ This email is already registered. Please log in or use a different email.';
+                } else {
+                    message.innerText = '❌ Error: ' + error.message;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

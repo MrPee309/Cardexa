@@ -1,2 +1,2 @@
-# Cardexa
-# cardexa Buy virtual cards with crypto. Fast, global, and secure.
+# cardexa
+Buy virtual cards with crypto. Fast, global, and secure.

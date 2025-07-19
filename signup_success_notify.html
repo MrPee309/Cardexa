@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open New Account</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #0b1f4b; color: white; padding: 20px; }
+        .form-container { background: #112e66; padding: 20px; border-radius: 8px; max-width: 400px; margin: auto; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin-top: 10px; }
+        .error { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Open New Account</h2>
+        <div id="message"></div>
+        <input type="text" placeholder="First Name" id="firstName" required>
+        <input type="text" placeholder="Last Name" id="lastName" required>
+        <input type="email" placeholder="Email Address" id="email" required>
+        <input type="text" placeholder="Phone Number" id="phone" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <input type="password" placeholder="Confirm Password" id="confirmPassword" required>
+        <label><input type="checkbox" id="terms"> I agree to the terms and privacy policy</label>
+        <button onclick="register()">Register</button>
+    </div>
+
+    <script>
+        function register() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageDiv = document.getElementById('message');
+
+            if (password !== confirmPassword) {
+                messageDiv.innerHTML = '<div class="error">Passwords do not match.</div>';
+                return;
+            }
+
+            // Simulate success registration (real code would use Firebase here)
+            setTimeout(() => {
+                messageDiv.innerHTML = '<div class="success">✅ Registration successful! Please check your email to confirm your account.</div>';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

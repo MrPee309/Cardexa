@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cardexa | Dashboard</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; }
+    h2 { color: #2E8B57; }
+    .info-box { margin: 20px auto; padding: 20px; border: 1px solid #ccc; width: 300px; }
+    #logoutBtn { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>👋 Welcome to Your Dashboard</h2>
+  <div class="info-box">
+    <p><strong>👤 Username:</strong> <span id="username"></span></p>
+    <p><strong>📧 Email:</strong> <span id="email"></span></p>
+    <p><strong>💰 Balance:</strong> $<span id="balance">0.00</span></p>
+  </div>
+  <button id="logoutBtn">Logout</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA6OGM7K4-QJ5pojo2CbKvPG8gw1FAw5eI",
+      authDomain: "cardexa-ced2b.firebaseapp.com",
+      projectId: "cardexa-ced2b",
+      storageBucket: "cardexa-ced2b.appspot.com",
+      messagingSenderId: "89756517705",
+      appId: "1:89756517705:web:bf07924b1aaf46a883c698",
+      measurementId: "G-P8XZGRGDVN"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const emailEl = document.getElementById("email");
+    const balanceEl = document.getElementById("balance");
+    const usernameEl = document.getElementById("username");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user && user.emailVerified) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          emailEl.textContent = user.email;
+          balanceEl.textContent = data.balance.toFixed(2);
+          usernameEl.textContent = data.username || "(no username)";
+        }
+      } else {
+        alert("You must be logged in and have verified your email.");
+        window.location.href = "login.html";
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
